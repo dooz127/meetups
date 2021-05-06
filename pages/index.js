@@ -4,25 +4,6 @@ import { MongoClient } from 'mongodb';
 
 import MeetupList from '../components/meetups/MeetupList';
 
-const DUMMY_MEETUPS = [
-  {
-    id: 'm1',
-    title: 'First Meetup',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/d/d3/Stadtbild_M%C3%BCnchen.jpg',
-    address: 'Some address 5, 12345 Some City',
-    description: 'This is a first meetup'
-  },
-  {
-    id: 'm2',
-    title: 'Second Meetup',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/2/2d/Taipei_Taiwan_Taipei-101-Tower-01.jpg',
-    address: 'Some address 6, 67890 Some City',
-    description: 'This is a second meetup'
-  }
-];
-
 const HomePage = (props) => {
   return (
     <React.Fragment>
@@ -58,7 +39,8 @@ export const getStaticProps = async () => {
         description: meetup.description,
         id: meetup._id.toString()
       }))
-    }
+    },
+    revalidate: 1
   };
 };
 
